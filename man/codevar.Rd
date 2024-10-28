@@ -15,7 +15,9 @@ dataframe with recoded column names
 \description{
 Take a dataset and change column names to manageable
 coded variables names based on a desired string-length. This function also
-removes all spaces and makes all characters lower-case.
+removes all spaces and makes all characters lower-case. A reference vector is
+created (coderef) which display the transformed column names and the original
+column name.
 }
 \examples{
 codetitle(data, strlength = 3)
