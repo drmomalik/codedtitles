@@ -11,26 +11,29 @@
 #' codetitle(data, strlength = 3)
 #' @export
 
-codevar <- function(data, strlength) {
+codevar <- function(data, strlength, tag = NULL) {
   collength <- nchar(colnames(data))
   namescol <- colnames(data)
-  coderef <- character(length(collength))
+  coderef <- data.frame(matrix(ncol = length(collength), nrow = 2))
   for (i in 1:(length(collength))) {
     if (collength[i] > strlength) {
-      namescol[i] <- gsub(" ", "",
+      namescol[i] <- paste0(gsub(" ", "",
                                  tolower(
-                                   substr(namescol[i], 1, strlength)))
+                                   substr(namescol[i], 1, strlength))),tag)
     }
     else {
-      namescol[i] <- gsub(" ", "",
-                                 tolower(namescol[i]))
+      namescol[i] <- paste0(gsub(" ", "",
+                                 tolower(namescol[i])),tag)
 
     }
     if (namescol[i] %in% namescol[1:i-1] == TRUE) {
-        namescol[i] <- gsub(" ","",paste(namescol[i],i))
+        namescol[i] <- gsub(" ","",paste0(namescol[i],'_',i))
     }
-    coderef[i] <- paste(colnames(data)[i], "=", namescol[i])
+    coderef[1,i] <- namescol[i]
+    coderef[2,i] <- colnames(data)[i]
   }
+  names(coderef) <- as.character(unlist(coderef[1,]))
+  coderef <- coderef[-1,]
   assign("coderef", coderef, .GlobalEnv)
 print(namescol)
 
