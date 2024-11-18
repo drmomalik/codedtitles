@@ -35,7 +35,7 @@ codevar <- function(data, max_length = 8, tag = NULL) {
     name <- namescol[i]
 
     # Remove special characters
-    name <- gsub('[^[:alnum:] ]', " ", name)
+    name <- gsub('[^[:alnum:] ]'," ", name)
 
     # Convert to lowercase
     name <- tolower(name)
