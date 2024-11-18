@@ -11,7 +11,7 @@
 #' codetitle(data, strlength = 3)
 #' @export
 
-codevar <- function(data, max_length = 15, tag = NULL) {
+codevar <- function(data, max_length = 15, tag = NULL, split = TRUE) {
 
   ### Argument checks before running the function
   if (!is.data.frame(data)) {
@@ -42,13 +42,14 @@ codevar <- function(data, max_length = 15, tag = NULL) {
     name <- tolower(name)
 
     # Split into words
-    words <- unlist(strsplit(name, "\\s+"))
-    if (length(words) == 0 || all(words == "")) {
-      words <- substr(gsub("\\s+", "", name), 1, max_length)
-    }
+    if (split == TRUE) {
+      name <- unlist(strsplit(name, "\\s+"))
+      if (length(words) == 0 || all(words == "")) {
+      name <- substr(gsub("\\s+", "", name), 1, max_length)
+    }}
 
     # Create and clean text corpus
-    corpus <- VCorpus(VectorSource(words))
+    corpus <- VCorpus(VectorSource(name))
     corpus <- tm_map(corpus, content_transformer(tolower))
     corpus <- tm_map(corpus, removePunctuation)
     corpus <- tm_map(corpus, removeWords, stopwords("english"))
