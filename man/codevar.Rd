@@ -4,7 +4,7 @@
 \alias{codevar}
 \title{Code Variable Names of Dataframe}
 \usage{
-codevar(data, strlength, tag = NULL)
+codevar(data, max_length = 8, tag = NULL)
 }
 \arguments{
 \item{dataframe}{with named columns}
