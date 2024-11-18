@@ -11,7 +11,8 @@
 #' codetitle(data, strlength = 3)
 #' @export
 
-codevar <- function(data, max_length = 8, tag = NULL) {
+codevar <- function(data, max_length = 15, tag = NULL) {
+
   ### Argument checks before running the function
   if (!is.data.frame(data)) {
     stop("Input data must be a dataframe.")
@@ -83,6 +84,11 @@ codevar <- function(data, max_length = 8, tag = NULL) {
     while (new_name %in% coderef$New) {
       new_name <- paste0(base_name, "_", suffix)
       suffix <- suffix + 1
+    }
+
+    # Add the tag to the end of the new name if tag is not NULL
+    if (!is.null(tag)) {
+      new_name <- paste0(new_name, tag)
     }
 
     # Store in coderef
