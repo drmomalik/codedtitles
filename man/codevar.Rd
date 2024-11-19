@@ -20,7 +20,7 @@ created (coderef) which display the transformed column names and the original
 column name.
 }
 \examples{
-codetitle(data, strlength = 3)
+codevar(data, max_length = 8, tag = "_fu")
 }
 \author{
 Mohsyn Imran Malik

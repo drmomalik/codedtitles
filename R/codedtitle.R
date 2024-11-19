@@ -8,7 +8,7 @@
 #' @return dataframe with recoded column names
 #' @author Mohsyn Imran Malik
 #' @examples
-#' codetitle(data, strlength = 3)
+#' codevar(data, max_length = 8, tag = "_fu")
 #' @export
 
 codevar <- function(data, max_length = 15, tag = NULL, split = TRUE) {
@@ -37,9 +37,6 @@ codevar <- function(data, max_length = 15, tag = NULL, split = TRUE) {
 
     # Remove special characters
     name <- gsub('[^[:alnum:] ]'," ", name)
-
-    # Convert to lowercase
-    name <- tolower(name)
 
     # Split into words
     if (split == TRUE) {
