@@ -1,6 +1,6 @@
 # Overview
 
-### “codedtitles” is a package designed to make the pre-processing of variables simpler prior to moving forward with analysis.
+### “codedtitles” is a package designed to make the pre-processing of variable names simpler prior to moving forward with analysis.
 
 # Installation
 
