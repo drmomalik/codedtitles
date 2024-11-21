@@ -1,12 +1,19 @@
 Package: codedtitles
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Create syntactically, simplified variable names
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Mohsyn Imran Malik, Alex G, Felix H, Kabier I, Temoor T
+Maintainer: Mohsyn Imran Malik <mohysn.malik@mail.utoronto.ca>
+Description: Take a dataset in the form of a dataframe and change column names 
+    to manageable and syntactically valid coded variables names. Used in 
+    conjunction with the 'tm' and 'SnowballC' package, this package will 
+    create shortened and simple column names using natural language processing to 
+    attempt to maintain variable meaning. With a pre-specified max character 
+    length (default = 15), user can also decide to shorten variables to a 
+    desired length. A reference vector is created (coderef) which displays the
+    transformed column names and the original column name, as well as the class 
+    of data for each column.
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
@@ -14,3 +21,10 @@ Depends:
     R (>= 2.10)
 URL: https://github.com/drmomalik/codedtitles
 BugReports: https://github.com/drmomalik/codedtitles/issues
+Imports: 
+    SnowballC,
+    tm
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

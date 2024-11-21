@@ -2,7 +2,7 @@
 % Please edit documentation in R/codedtitle.R
 \name{codevar}
 \alias{codevar}
-\title{Code Variable Names of Dataframe}
+\title{Code variable names of dataframe to syntactically valid names}
 \usage{
 codevar(data, max_length = 15, tag = NULL, split = TRUE)
 }
@@ -10,18 +10,23 @@ codevar(data, max_length = 15, tag = NULL, split = TRUE)
 \item{dataframe}{with named columns}
 }
 \value{
-dataframe with recoded column names
+dataframe with recoded column names, and a reference dataframe including
+the recoded column names, original column names and data class.
 }
 \description{
-Take a dataset and change column names to manageable
-coded variables names based on a desired string-length. This function also
-removes all spaces and makes all characters lower-case. A reference vector is
-created (coderef) which display the transformed column names and the original
-column name.
+Take a dataset in the form of a dataframe and change column names to manageable
+and syntactically valid coded variables names. Used in conjunction with the 'tm' and
+'SnowballC' package, this package will create shortened and simple column names
+using natural language processing to attempt to maintain variable meaning.
+With a pre-specified max character length (default = 15), user can also decide
+to shorten variables to a desired length.
+A reference vector is created (coderef) which displays the transformed
+column names and the original column name, as well as the class of data for
+each column.
 }
 \examples{
 codevar(data, max_length = 8, tag = "_fu")
 }
 \author{
-Mohsyn Imran Malik
+Mohsyn Imran Malik, Alex G, Felix H, Kabier I, Temoor T
 }

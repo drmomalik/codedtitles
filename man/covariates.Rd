@@ -28,7 +28,7 @@ covariates
 }
 \description{
 Sample data with multiple variables with names of varying lengths, spacing,
-and captilization. This dataframe also contains variables with similar names
+and capitalization. This dataframe also contains variables with similar names
 which the function deals with by adding col# to the end of repeated named
 variables
 }
