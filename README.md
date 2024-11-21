@@ -7,7 +7,7 @@
 ```{r}
 install.packages("devtools")
 library(devtools)
-devtools::install_github("drmomalik/codedtitles", )
+devtools::install_github("drmomalik/codedtitles")
 library(codedtitles)
 ```
 
