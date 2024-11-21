@@ -2,7 +2,9 @@
 
 ### “codedtitles” is a package designed to make the pre-processing of variables simpler prior to moving forward with analysis.
 
-#### The motivation for this package was born out of our own clinical research experience. For example, a large surgical database with over 200 variables was provided for analysis. None of the column titles had proper coding and many contained special characters and spaces, which would make it syntactically challenging to deal with in R. Given that many of these databases are collected by clinicians or people without statistical software experience, they may not be familiar with the role of variable coding. As such, we have attempted to create a novel, simple solution to speed up this process.
+# How To Use
+
+The motivation for this package was born out of our own clinical research experience. For example, a large surgical database with over 200 variables was provided for analysis. None of the column titles had proper coding and many contained special characters and spaces, which would make it syntactically challenging to deal with in R. Given that many of these databases are collected by clinicians or people without statistical software experience, they may not be familiar with the role of variable coding. As such, we have attempted to create a novel, simple solution to speed up this process.
 
 Example dataframe:
 ```{r}
