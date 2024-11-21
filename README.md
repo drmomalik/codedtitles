@@ -155,7 +155,7 @@ Again, if we are unsure of the original name, we can always reference the “cod
 
 ## Case 4: Repeat Variables
 
-Lets look at our last example where our max_length was 3 and there is no splitting. This leads to equal new variable names for variables like “Attack_Rate”, “Attack_Rate_Total” and “attacK”.
+Lets look at our last example where our max_length was 3 and there is no splitting. This leads to equal new variable names for variables like “Attack_Rate”, “Attack_Rate_Total” and “attack”.
 
 The code anticipates this and will sequentially add a number tag to repeat variables:
 
