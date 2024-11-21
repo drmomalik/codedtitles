@@ -45,7 +45,7 @@ Here is an example dataframe that contains some example variable names that may 
 
 ## Case 1: Base function
 
-First, we will demonstrate the base function of the package. This will organize all the column names by shortening the stem words, making them lower case and removing special characters.
+First, we will demonstrate the base function of the package. This will organize all of the column names by shortening the stem words, making them lower case and removing special characters.
 
 ```{r}
 new_names <- codevar(data)
@@ -110,7 +110,7 @@ print(coderef)
 
 ## Case 2: Reducing length of characters for each variable
 
-By default, the function allows for a max_length of the new names to be 15 characters. However, if the user desires shorter variable names, this can be manually changed in the arguments. To maintain the meaning of the variable, the function truncates the individual words separately. Let try an example with max_length at 6
+By default, the function allows for a max_length of the new names to be 15 characters. However, if the user desires shorter variable names, this can be manually changed in the arguments. To maintain the meaning of the variable, the function truncates the individual words separately. Let's try an example with max_length at 6
 
 ```{r}
 new_names <- codevar(data, max_length = 6)
@@ -172,8 +172,7 @@ This prevents any two variables from having the exact same name new re-coded nam
 
 ## Case 5: Add tag
 
-Lastly, if user wants to add a tag to variables after it is run through the function, an argument is provided. We also demonstrate how you can choose to only apply this function to select columns if desired.
-We will add a tag "_bl" to columns 4-7 to specify them as baseline data
+Lastly, if user wants to add a tag to the end of the new variable names, an argument is provided to do this. In addition to demonstrating this tag argument, we also show have this function can be applied to only certain pre-specified columns. We will add a tag "_bl" to columns 4-7 to denote them as baseline data, as on example. 
 
 ```{r}
 new_names <- codevar(data[,4:7], max_length = 3, split = FALSE, tag = "_bl")
