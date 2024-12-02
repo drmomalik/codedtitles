@@ -210,7 +210,8 @@ new_names <- codevar(data, max_length = 8, exclude_var = c("Age_Group", "Gender"
 -   The transform argument is given as a list with each transformation included in the list. Below is an example.
 
 ```{r}
-new_names \<- codevar(data, max_length = 8, transform = list("?&%#%" = "Sequence"))}
+# We want to re-name the string of random special characters so some meaning is retained 
+new_names <- codevar(data, max_length = 8, transform = list("?&%#%" = "Sequence"))
 
 #\> [1] "case_id" "sequenc" "sequenc_1" "age_grou" "gender"\
 #\> [6] "region" "diseas" "symp_onse" "hospit" "icu_admi"\
