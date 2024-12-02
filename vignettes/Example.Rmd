@@ -21,6 +21,8 @@ How do I use codedtitles in R? This vignette will go through some of the functio
 Load the package:
 
 ```{r setup}
+library(devtools)
+devtools::install_github("drmomalik/codedtitles")
 library(codedtitles)
 ```
 

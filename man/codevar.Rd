@@ -4,10 +4,18 @@
 \alias{codevar}
 \title{Code variable names of dataframe to syntactically valid names}
 \usage{
-codevar(data, max_length = 15, tag = NULL, split = TRUE)
+codevar(data, max_length = 15, tag = NULL, split = TRUE, exclude_var = NULL)
 }
 \arguments{
-\item{dataframe}{with named columns}
+\item{data}{A dataframe with named columns}
+
+\item{max_length}{Maximum character length of desired coded variable}
+
+\item{tag}{An optional tag that is added to the end of the coded variable after processing}
+
+\item{split}{By default, the function splits root words from the total variable name in an attempt to keep
+original variable meaning. This can be turned off to treat the whole variable name as a single character
+string to truncate on.}
 }
 \value{
 dataframe with recoded column names, and a reference dataframe including
@@ -20,6 +28,7 @@ and syntactically valid coded variables names. Used in conjunction with the 'tm'
 using natural language processing to attempt to maintain variable meaning.
 With a pre-specified max character length (default = 15), user can also decide
 to shorten variables to a desired length.
+
 A reference vector is created (coderef) which displays the transformed
 column names and the original column name, as well as the class of data for
 each column.

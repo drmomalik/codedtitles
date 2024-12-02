@@ -5,11 +5,18 @@
 #' using natural language processing to attempt to maintain variable meaning.
 #' With a pre-specified max character length (default = 15), user can also decide
 #' to shorten variables to a desired length.
+#'
 #' A reference vector is created (coderef) which displays the transformed
 #' column names and the original column name, as well as the class of data for
 #' each column.
 #'
-#' @param dataframe with named columns
+#' @param data A dataframe with named columns
+#' @param max_length Maximum character length of desired coded variable
+#' @param tag An optional tag that is added to the end of the coded variable after processing
+#' @param split By default, the function splits root words from the total variable name in an attempt to keep
+#' original variable meaning. This can be turned off to treat the whole variable name as a single character
+#' string to truncate on.
+#'
 #' @return dataframe with recoded column names, and a reference dataframe including
 #' the recoded column names, original column names and data class.
 #' @author Mohsyn Imran Malik, Alex G, Felix H, Kabier I, Temoor T
@@ -19,7 +26,9 @@
 
 
 
-codevar <- function(data, max_length = 15, tag = NULL, split = TRUE) {
+codevar <- function(data, max_length = 15, tag = NULL, split = TRUE, exclude_var = NULL) {
+
+  # Warnings prior to running the function
   if (!is.data.frame(data)) {
     stop("Input data must be a dataframe.")
   }
@@ -27,15 +36,18 @@ codevar <- function(data, max_length = 15, tag = NULL, split = TRUE) {
     stop("max_length must be at least 1.")
   }
 
+  # Install and load required packages
   if (!requireNamespace("tm", quietly = TRUE)) stop("Package 'tm' is required.")
   if (!requireNamespace("SnowballC", quietly = TRUE)) stop("Package 'SnowballC' is required.")
 
   library(tm)
   library(SnowballC)
 
+  #intialize reference dataframe
   coderef <- data.frame(New = character(), Original = character(), Class = character(), stringsAsFactors = FALSE)
   namescol <- colnames(data)
 
+  # Loop for data cleaning and coding
   for (i in seq_along(namescol)) {
     name <- namescol[i]
 
@@ -98,6 +110,12 @@ codevar <- function(data, max_length = 15, tag = NULL, split = TRUE) {
       )
     )
   }
+
+  # Do not process variables that are specified in the "exclude_var" argument
+  if (!is.null(exclude_var)) {
+    coderef$New <- ifelse(coderef$Original %in% exclude_var, coderef$Original, coderef$New)
+    }
+
   assign("coderef", coderef, .GlobalEnv)
   print(coderef[, 1])
 }
