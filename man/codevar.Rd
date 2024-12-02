@@ -4,7 +4,14 @@
 \alias{codevar}
 \title{Code variable names of dataframe to syntactically valid names}
 \usage{
-codevar(data, max_length = 15, tag = NULL, split = TRUE, exclude_var = NULL)
+codevar(
+  data,
+  max_length = 15,
+  tag = NULL,
+  split = TRUE,
+  exclude_var = NULL,
+  transform = NULL
+)
 }
 \arguments{
 \item{data}{A dataframe with named columns}
@@ -19,9 +26,12 @@ string to truncate on.}
 
 \item{exclude_var}{Argument allows the use to specify which variables it would like to keep the same and not
 be recoded}
+
+\item{transform}{Allows the user to transform any portion of the variable name prior to it being processed. The
+argument is provided as a list so multiple transformations can be applied. (Ex. codevar(data, transform = list("$" = "salary", "Gene" = ""))}
 }
 \value{
-dataframe with recoded column names, and a reference dataframe including
+Prints recoded column names, and a reference dataframe including
 the recoded column names, original column names and data class.
 }
 \description{

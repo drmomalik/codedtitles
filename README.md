@@ -11,11 +11,12 @@ library(devtools)
 devtools::install_github("drmomalik/codedtitles")
 library(codedtitles)
 ```
+
 -   "codedtitles" is a package designed to make the pre-processing of variables simpler prior to moving forward with analysis.
 
 -   The motivation for this package was born out of our own clinical research experience. For example, a large surgical database with over 200 variables was provided for analysis. None of the column titles had proper coding and many contained special characters and spaces, which would make it syntactically challenging to deal with in R. Given that many of these databases are collected by clinicians or people without statistical software experience, they may not be familiar with the role of variable coding. As such, we have attempted to create a novel, simple solution to speed up this process.
 
-###Example dataframe
+### Example dataframe
 
 ```{r}
 data <- df
@@ -66,6 +67,7 @@ new_names <- codevar(data)
 ```
 
 The output here shows our new names which have been simplified. If we want to reference these new names to the old names, we can call “coderef”.
+
 ```{r}
 print(coderef)
 
@@ -111,6 +113,7 @@ print(coderef)
 ### Case 2: Reducing length of characters for each variable
 
 By default, the function allows for a max_length of the new names to be 15 characters. However, if the user desires shorter variable names, this can be manually changed in the arguments. To maintain the meaning of the variable, the function truncates the individual words separately. Let try an example with max_length at 6
+
 ```{r}
 new_names <- codevar(data, max_length = 6)
 
@@ -121,11 +124,13 @@ new_names <- codevar(data, max_length = 6)
 #> [25] "att_rat"  "at_ra_to" "rei_sta"  "ant_usa"  "out_clu"  "env_fac" 
 #> [31] "gen_seq"  "rep_del"  "dat_sou"  "stu_per"  "attack"   "mor_tot"
 ```
+
 The function attempts to find simpler version of each word in the name and shorten them to meet the max_length argument.
 
 ### Case 3: Removing word splitting
 
 Lets say we make max_length at 3 so we have very short variables to work with.
+
 ```{r}
 new_names <- codevar(data, max_length = 3)
 
@@ -138,6 +143,7 @@ new_names <- codevar(data, max_length = 3)
 ```
 
 While this does shorten our variables significantly, the function still attempts to separate individual words within the variable name and then recombines after truncating with an underscore. If we want to remove these underscores, and instead shorten the whole variables we can set the split argument to false.
+
 ```{r}
 new_names <- codevar(data, max_length = 3, split = FALSE)
 
@@ -169,6 +175,7 @@ This prevents any two variables from having the exact same name new re-coded nam
 ### Case 5: Add tag
 
 Lastly, if user wants to add a tag to variables after it is run through the function, an argument is provided. We also demonstrate how you can choose to only apply this function to select columns if desired.
+
 ```{r}
 # We will add a tag "_bl" to columns 4-7 to specify them as baseline data
 new_names <- codevar(data[,4:7], max_length = 3, split = FALSE, tag = "_bl")
@@ -179,6 +186,7 @@ new_names <- codevar(data[,4:7], max_length = 3, split = FALSE, tag = "_bl")
 ### Case 6: Exclude Variables
 
 If you do not want to apply the function to all of your column names, you can use the “exclude_var” argument to select variables you would like to keep as is.
+
 ```{r}
 # We want to keep the names of "Age_Group" and "Gender"
 new_names <- codevar(data, max_length = 8, exclude_var = c("Age_Group", "Gender"))
@@ -191,4 +199,15 @@ new_names <- codevar(data, max_length = 8, exclude_var = c("Age_Group", "Gender"
 #> [26] "att_rat_to" "rein_stat"  "anti_usag"  "outb_clus"  "envi_fact" 
 #> [31] "geno_sequ"  "repo_dela"  "data_sour"  "stud_peri"  "attack"    
 #> [36] "mort_tota"
+```
+
+### Case 7: Transforming variables prior to processing
+
+-   The final argument of the codevar function, transform, allows the user to transform any portion of the variable name prior to it being processed. This may be helpful if the user wants to change or remove a common root word for multiple variables (ex. Remove "gene" from "gene_OMPRM1" and "gene_MOR1") or if special characters have some meaning and the user wants to change them prior to the special characters being filtered out (Ex. Change "\$" to "salary" for "Annual\_\$")
+
+    The transform argument is given as a list with each transformation included in the list. Below is an example.
+
+```{r} new_names <- codevar(data, max_length = 8, transform = list("?&%#%" = "Sequence"))}
+
+
 ```

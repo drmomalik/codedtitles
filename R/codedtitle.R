@@ -18,8 +18,10 @@
 #' string to truncate on.
 #' @param exclude_var Argument allows the use to specify which variables it would like to keep the same and not
 #' be recoded
+#' @param transform Allows the user to transform any portion of the variable name prior to it being processed. The
+#' argument is provided as a list so multiple transformations can be applied. (Ex. codevar(data, transform = list("$" = "salary", "Gene" = ""))
 #'
-#' @return dataframe with recoded column names, and a reference dataframe including
+#' @return Prints recoded column names, and a reference dataframe including
 #' the recoded column names, original column names and data class.
 #' @author Mohsyn Imran Malik, Alex G, Felix H, Kabier I, Temoor T
 #' @examples
@@ -28,7 +30,7 @@
 
 
 
-codevar <- function(data, max_length = 15, tag = NULL, split = TRUE, exclude_var = NULL) {
+codevar <- function(data, max_length = 15, tag = NULL, split = TRUE, exclude_var = NULL, transform = NULL) {
 
   # Warnings prior to running the function
   if (!is.data.frame(data)) {
@@ -45,18 +47,26 @@ codevar <- function(data, max_length = 15, tag = NULL, split = TRUE, exclude_var
   library(tm)
   library(SnowballC)
 
-  #intialize reference dataframe
+  # Intialize reference dataframe
   coderef <- data.frame(New = character(), Original = character(), Class = character(), stringsAsFactors = FALSE)
   namescol <- colnames(data)
+
 
   # Loop for data cleaning and coding
   for (i in seq_along(namescol)) {
     name <- namescol[i]
 
+    # Preprocess to replace specific substrings
+    if (!is.null(transform)) {
+    for (pattern in names(transform)) {
+      replacement <- transform[[pattern]]
+      name <- gsub(pattern, replacement, name, fixed = TRUE)
+    } }
+
     # Remove special characters
     name <- gsub('[^[:alnum:] ]', " ", name)
 
-    # Split into words
+    # Split into root words
     if (split == TRUE) {
       name <- unlist(strsplit(name, "\\s+"))
       if (is.null(name) || length(name) == 0 || all(name == "")) {
@@ -89,8 +99,10 @@ codevar <- function(data, max_length = 15, tag = NULL, split = TRUE, exclude_var
       new_name <- substr(processed_name, 1, max_length)
     }
 
+    # Ensures variable is syntactically friendly
     new_name <- make.names(new_name)
 
+    # Checks for repeat variables and adds tag if required
     suffix <- 1
     base_name <- new_name
     while (new_name %in% coderef$New) {
@@ -98,6 +110,7 @@ codevar <- function(data, max_length = 15, tag = NULL, split = TRUE, exclude_var
       suffix <- suffix + 1
     }
 
+    # Adds optional tag to final recoded variable
     if (!is.null(tag)) {
       new_name <- paste0(new_name, tag)
     }

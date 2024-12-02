@@ -114,3 +114,13 @@ new_names <- codevar(data[,4:7], max_length = 3, split = FALSE, tag = "_bl")
 # We want to keep the names of "Age_Group" and "Gender"
 new_names <- codevar(data, max_length = 8, exclude_var = c("Age_Group", "Gender"))
 ```
+
+### Case 7: Transforming variables prior to processing
+
+-   The final argument of the codevar function, transform, allows the user to transform any portion of the variable name prior to it being processed. This may be helpful if the user wants to change or remove a common root word for multiple variables (ex. Remove "gene" from "gene_OMPRM1" and "gene_MOR1") or if special characters have some meaning and the user wants to change them prior to the special characters being filtered out (Ex. Change "\$" to "salary" for "Annual\_\$")
+
+    The transform argument is given as a list with each transformation included in the list. Below is an example.
+
+```{r}
+new_names <- codevar(data, max_length = 8, transform = list("?&%#%" = "Sequence"))
+```
