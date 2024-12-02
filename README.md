@@ -203,11 +203,21 @@ new_names <- codevar(data, max_length = 8, exclude_var = c("Age_Group", "Gender"
 
 ### Case 7: Transforming variables prior to processing
 
--   The final argument of the codevar function, transform, allows the user to transform any portion of the variable name prior to it being processed. This may be helpful if the user wants to change or remove a common root word for multiple variables (ex. Remove "gene" from "gene_OMPRM1" and "gene_MOR1") or if special characters have some meaning and the user wants to change them prior to the special characters being filtered out (Ex. Change "\$" to "salary" for "Annual\_\$")
+-   The final argument of the codevar function, transform, allows the user to transform any portion of the variable name prior to it being processed.
 
-    The transform argument is given as a list with each transformation included in the list. Below is an example.
+-   This may be helpful if the user wants to change or remove a common root word for multiple variables (ex. Remove "gene" from "gene_OMPRM1" and "gene_MOR1") or if special characters have some meaning and the user wants to change them prior to the special characters being filtered out (Ex. Change "\$" to "salary" for "Annual\_\$")
+
+-   The transform argument is given as a list with each transformation included in the list. Below is an example.
 
 ```{r} new_names <- codevar(data, max_length = 8, transform = list("?&%#%" = "Sequence"))}
 
+#>  [1] "case_id"    "sequenc"    "sequenc_1"  "age_grou"   "gender"    
+#>  [6] "region"     "diseas"     "symp_onse"  "hospit"     "icu_admi"  
+#> [11] "vacc_stat"  "expo_hist"  "pri_tra_ro" "seco_case"  "serotyp"   
+#> [16] "pcr_res_16" "pcr_res_17" "elis_resu"  "con_tra_st" "isol_dura" 
+#> [21] "reco_stat"  "mort_stat"  "r0_esti"    "incu_peri"  "atta_rate" 
+#> [26] "att_rat_to" "rein_stat"  "anti_usag"  "outb_clus"  "envi_fact" 
+#> [31] "geno_sequ"  "repo_dela"  "data_sour"  "stud_peri"  "attack"    
+#> [36] "mort_tota"
 
 ```
