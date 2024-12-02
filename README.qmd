@@ -1,12 +1,6 @@
 ---
 title: "Example Use"
-output: rmarkdown::html_vignette
-descriptions: >
-  How do I use codedtitles in R? This vignette will go       through some of the functionality of this package and      scenarios where it may be helpful.
-vignette: >
-  %\VignetteIndexEntry{Example}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: gfm
 ---
 
 ```{r, include = FALSE}
