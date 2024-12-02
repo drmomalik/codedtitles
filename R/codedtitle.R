@@ -1,4 +1,4 @@
-#' @title Code variable names of dataframe to syntactically valid names
+#' @title codedtitles: a data pre-processing package for re-coding variable names
 #' @description Take a dataset in the form of a dataframe and change column names to manageable
 #' and syntactically valid coded variables names. Used in conjunction with the 'tm' and
 #' 'SnowballC' package, this package will create shortened and simple column names

@@ -2,7 +2,7 @@
 % Please edit documentation in R/codedtitle.R
 \name{codevar}
 \alias{codevar}
-\title{Code variable names of dataframe to syntactically valid names}
+\title{codedtitles: a data pre-processing package for re-coding variable names}
 \usage{
 codevar(
   data,
