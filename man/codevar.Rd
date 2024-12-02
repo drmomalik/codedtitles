@@ -16,6 +16,9 @@ codevar(data, max_length = 15, tag = NULL, split = TRUE, exclude_var = NULL)
 \item{split}{By default, the function splits root words from the total variable name in an attempt to keep
 original variable meaning. This can be turned off to treat the whole variable name as a single character
 string to truncate on.}
+
+\item{exclude_var}{Argument allows the use to specify which variables it would like to keep the same and not
+be recoded}
 }
 \value{
 dataframe with recoded column names, and a reference dataframe including
