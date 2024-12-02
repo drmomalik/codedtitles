@@ -113,7 +113,7 @@ codevar <- function(data, max_length = 15, tag = NULL, split = TRUE, exclude_var
     )
   }
 
-  # Do not process variables that are specified in the "exclude_var" argument
+  # Keep original names for those specified in the "exclude_var" argument
   if (!is.null(exclude_var)) {
     coderef$New <- ifelse(coderef$Original %in% exclude_var, coderef$Original, coderef$New)
     }
