@@ -105,3 +105,12 @@ coderef[c(25,26,35),]
 new_names <- codevar(data[,4:7], max_length = 3, split = FALSE, tag = "_bl")
 
 ```
+
+### Case 6: Exclude Variables
+
+-   If you do not want to apply the function to all of your column names, you can use the "exclude_var" argument to select variables you would like to keep as is.
+
+```{r}
+# We want to keep the names of "Age_Group" and "Gender"
+new_names <- codevar(data, max_length = 8, exclude_var = c("Age_Group", "Gender"))
+```

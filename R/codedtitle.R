@@ -16,6 +16,8 @@
 #' @param split By default, the function splits root words from the total variable name in an attempt to keep
 #' original variable meaning. This can be turned off to treat the whole variable name as a single character
 #' string to truncate on.
+#' @param exclude_var Argument allows the use to specify which variables it would like to keep the same and not
+#' be recoded
 #'
 #' @return dataframe with recoded column names, and a reference dataframe including
 #' the recoded column names, original column names and data class.
