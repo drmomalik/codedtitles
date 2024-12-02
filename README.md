@@ -20,6 +20,7 @@ library(codedtitles)
 ```{r}
 data <- df
 colnames(data)
+
 #>  [1] "Case_ID"                    "?&%#%"                     
 #>  [3] "?&%#%#"                     "Age_Group"                 
 #>  [5] "Gender"                     "Region"                    
@@ -38,10 +39,17 @@ colnames(data)
 #> [31] "Genomic_Sequence"           "Reporting_Delay"           
 #> [33] "Data_Source"                "Study_Period"              
 #> [35] "attack"                     "Mort$Total%_"
+```
+
 Here is an example dataframe that contains some example variable names that may be handed to a statistician. As we can see, a number of this variables have long names, some with special characters, some have very similar names too.
-Case 1: Base function
+
+### Case 1: Base function
+
 First, we will demonstrate the base function of the package. This will organize all the column names by shortening the stem words, making them lower case and removing special characters.
+
+```{r}
 new_names <- codevar(data)
+
 #> Loading required package: NLP
 #>  [1] "case_id"           "X"                 "X_1"              
 #>  [4] "age_group"         "gender"            "region"           
@@ -55,8 +63,12 @@ new_names <- codevar(data)
 #> [28] "antivir_usag"      "outbreak_cluster"  "environm_factor"  
 #> [31] "genom_sequenc"     "report_delay"      "data_sourc"       
 #> [34] "studi_period"      "attack"            "mort_total"
+```
+
 The output here shows our new names which have been simplified. If we want to reference these new names to the old names, we can call “coderef”.
+```{r}
 print(coderef)
+
 #>                  New                   Original     Class
 #> 1            case_id                    Case_ID   numeric
 #> 2                  X                      ?&%#%   numeric
@@ -101,6 +113,7 @@ print(coderef)
 By default, the function allows for a max_length of the new names to be 15 characters. However, if the user desires shorter variable names, this can be manually changed in the arguments. To maintain the meaning of the variable, the function truncates the individual words separately. Let try an example with max_length at 6
 ```{r}
 new_names <- codevar(data, max_length = 6)
+
 #>  [1] "cas_id"   "X"        "X_1"      "age_gro"  "gender"   "region"  
 #>  [7] "diseas"   "sym_ons"  "hospit"   "icu_adm"  "vac_sta"  "exp_his" 
 #> [13] "pr_tr_ro" "sec_cas"  "seroty"   "pc_re_16" "pc_re_17" "eli_res" 
@@ -115,6 +128,7 @@ The function attempts to find simpler version of each word in the name and short
 Lets say we make max_length at 3 so we have very short variables to work with.
 ```{r}
 new_names <- codevar(data, max_length = 3)
+
 #>  [1] "ca_i"    "X"       "X_1"     "ag_g"    "gen"     "reg"     "dis"    
 #>  [8] "sy_o"    "hos"     "ic_a"    "va_s"    "ex_h"    "p_t_r"   "se_c"   
 #> [15] "ser"     "p_r_1"   "p_r_1_1" "el_r"    "c_t_s"   "is_d"    "re_s"   
@@ -126,6 +140,7 @@ new_names <- codevar(data, max_length = 3)
 While this does shorten our variables significantly, the function still attempts to separate individual words within the variable name and then recombines after truncating with an underscore. If we want to remove these underscores, and instead shorten the whole variables we can set the split argument to false.
 ```{r}
 new_names <- codevar(data, max_length = 3, split = FALSE)
+
 #>  [1] "cas"   "X"     "X_1"   "age"   "gen"   "reg"   "dis"   "sym"   "hos"  
 #> [10] "icu"   "vac"   "exp"   "pri"   "sec"   "ser"   "pcr"   "pcr_1" "eli"  
 #> [19] "con"   "iso"   "rec"   "mor"   "r0."   "inc"   "att"   "att_1" "rei"  
@@ -142,6 +157,7 @@ The code anticipates this and will sequentially add a number tag to repeat varia
 
 ```{r}
 coderef[c(25,26,35),]
+
 #>      New          Original   Class
 #> 25   att       Attack_Rate numeric
 #> 26 att_1 Attack_Rate_Total numeric
@@ -156,6 +172,7 @@ Lastly, if user wants to add a tag to variables after it is run through the func
 ```{r}
 # We will add a tag "_bl" to columns 4-7 to specify them as baseline data
 new_names <- codevar(data[,4:7], max_length = 3, split = FALSE, tag = "_bl")
+
 #> [1] "age_bl" "gen_bl" "reg_bl" "dis_bl"
 ```
 
@@ -165,6 +182,7 @@ If you do not want to apply the function to all of your column names, you can us
 ```{r}
 # We want to keep the names of "Age_Group" and "Gender"
 new_names <- codevar(data, max_length = 8, exclude_var = c("Age_Group", "Gender"))
+
 #>  [1] "case_id"    "X"          "X_1"        "Age_Group"  "Gender"    
 #>  [6] "region"     "diseas"     "symp_onse"  "hospit"     "icu_admi"  
 #> [11] "vacc_stat"  "expo_hist"  "pri_tra_ro" "seco_case"  "serotyp"   
