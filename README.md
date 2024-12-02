@@ -209,12 +209,16 @@ new_names <- codevar(data, max_length = 8, exclude_var = c("Age_Group", "Gender"
 
 -   The transform argument is given as a list with each transformation included in the list. Below is an example.
 
-\`\`\`{r} new_names \<- codevar(data, max_length = 8, transform = list("?&%#%" = "Sequence"))}
+```{r}
+new_names \<- codevar(data, max_length = 8, transform = list("?&%#%" = "Sequence"))}
 
 #\> [1] "case_id" "sequenc" "sequenc_1" "age_grou" "gender"\
 #\> [6] "region" "diseas" "symp_onse" "hospit" "icu_admi"\
 #\> [11] "vacc_stat" "expo_hist" "pri_tra_ro" "seco_case" "serotyp"\
-#\> [16] "pcr_res_16" "pcr_res_17" "elis_resu" "con_tra_st" "isol_dura" #\> [21] "reco_stat" "mort_stat" "r0_esti" "incu_peri" "atta_rate" #\> [26] "att_rat_to" "rein_stat" "anti_usag" "outb_clus" "envi_fact" #\> [31] "geno_sequ" "repo_dela" "data_sour" "stud_peri" "attack"\
+#\> [16] "pcr_res_16" "pcr_res_17" "elis_resu" "con_tra_st" "isol_dura" 
+#\> [21] "reco_stat" "mort_stat" "r0_esti" "incu_peri" "atta_rate" 
+#\> [26] "att_rat_to" "rein_stat" "anti_usag" "outb_clus" "envi_fact" 
+#\> [31] "geno_sequ" "repo_dela" "data_sour" "stud_peri" "attack"\
 #\> [36] "mort_tota"
 
-\`\`\`
+```
