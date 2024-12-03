@@ -14,7 +14,10 @@
 
 -   Load the package:
 
-```{r setup} library(devtools) devtools::install_github("drmomalik/codedtitles") library(codedtitles)}
+```{r setup}
+library(devtools) 
+devtools::install_github("drmomalik/codedtitles") 
+library(codedtitles)
 ```
 
 ### Example dataframe
